@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.table-calendar {
+    min-width: 1110px;
+}
+
+.table-calendar thead th,
+.table-calendar th,
+.table-calendar td {
+    border-color: #AAA;
+}
+
+.table-calendar thead th {
+    text-align: center;
+}
+
+.table-calendar tbody td {
+    width: 130px;
+    overflow-x: scroll;
+}
+
+.table-calendar tbody td > div {
+    min-height: 130px;
+}
+
+.table-calendar tbody td .day {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.table-calendar tbody td .day-inactive {
+    color: #AAA;
+}
+
+.table-calendar th {
+    background-color: #EEE;
+}
+
+.table-calendar tbody th,
+.table-calendar tbody td {
+    padding: 0;
+}
+
+.table-calendar th > div,
+.table-calendar td > div {
+    position: relative;
+    padding: 0 10px 10px 10px;
+}
+
+.table-calendar .edit-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 1px;
+    top: 5px;
+    color: dodgerblue;
+    display: none;
+}
+
+.bg-sat2 {
+    background-color: #ecf3fb !important;
+}
+
+.bg-sun2 {
+    background-color: #fef0ec !important;
+}
+
+.bg-inactive {
+    background-color: #EEEEEE !important;
+}
+
+.bg-sat,
+.bg-sat2 > .day {
+    color: #3d3dd2;
+}
+
+.bg-sun,
+.bg-sun2 > .day {
+    color: #e73939;
+}

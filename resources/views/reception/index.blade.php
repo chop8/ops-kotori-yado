@@ -1,121 +1,85 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>受付 | 小鳥宿</title>
-        <style>
-            :root {
-                color-scheme: light;
-                font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-                color: #24332d;
-                background: #f5f7f2;
-            }
+@extends('layouts.base')
+@section('title', '予約表')
+@section('styles')
+    <link href="{{ asset('css/reception/schedule.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/reception/calendar.css') }}" rel="stylesheet">
+@endsection
 
-            * { box-sizing: border-box; }
+@section('content')
+    <div class="container mt-4">
+        <div class="rowframe01">
+            <p id="info">
+                編集を行うには、画面右下のパスワード欄に入力のうえ<span style="color:#FFFFFF;"><span style="background-color:#3366ff;"> 編集 </span></span>ボタンを押してください。<br />
+                各項目に表示の編集アイコン（鉛筆マーク）を押すことで入力フォームが表示されます。
+            </p>
+            <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="info"></i>
+        </div>
 
-            body {
-                min-height: 100vh;
-                margin: 0;
-                background: linear-gradient(135deg, #f5f7f2 0%, #e8f0e8 100%);
-            }
-
-            .page {
-                display: grid;
-                place-items: center;
-                min-height: 100vh;
-                padding: 24px;
-            }
-
-            .card {
-                width: min(100%, 640px);
-                padding: clamp(32px, 8vw, 64px);
-                text-align: center;
-                background: #fff;
-                border: 1px solid #dce7dd;
-                border-radius: 24px;
-                box-shadow: 0 20px 50px rgba(36, 51, 45, .1);
-            }
-
-            .eyebrow {
-                margin: 0 0 12px;
-                color: #62836b;
-                font-size: .85rem;
-                font-weight: 700;
-                letter-spacing: .16em;
-            }
-
-            h1 {
-                margin: 0;
-                font-size: clamp(2rem, 6vw, 3.25rem);
-                letter-spacing: .08em;
-            }
-
-            .lead {
-                margin: 24px auto 0;
-                max-width: 32rem;
-                color: #5d6d63;
-                line-height: 1.9;
-            }
-
-            .status {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                margin: 32px 0 24px;
-                padding: 8px 14px;
-                color: #4d6d56;
-                background: #edf6ee;
-                border-radius: 999px;
-                font-size: .9rem;
-            }
-
-            .status::before {
-                width: 8px;
-                height: 8px;
-                content: "";
-                background: #79a582;
-                border-radius: 50%;
-            }
-
-            .button {
-                display: inline-block;
-                padding: 14px 28px;
-                color: #fff;
-                background: #62836b;
-                border-radius: 10px;
-                font-weight: 700;
-                text-decoration: none;
-                transition: background .2s ease, transform .2s ease;
-            }
-
-            .button:hover {
-                background: #4d6d56;
-                transform: translateY(-1px);
-            }
-
-            .footer {
-                margin: 32px 0 0;
-                color: #8a998e;
-                font-size: .8rem;
-            }
-        </style>
-    </head>
-    <body>
-        <main class="page">
-            <section class="card" aria-labelledby="reception-title">
-                <p class="eyebrow">KOTORI YADO</p>
-                <h1 id="reception-title">受付</h1>
-                <p class="lead">
-                    小鳥宿へようこそ。<br>
-                    こちらからチェックイン・チェックアウトなどのお手続きをご案内します。
-                </p>
-                <p class="status">受付システム準備中</p>
-                <div>
-                    <a class="button" href="{{ url('/') }}">トップページへ戻る</a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="grid">
+                    <div class="grid-header">
+                        <span class="grid-title">{{ $month->format('Y年n月') }}</span>
+                        <a href="{{ $nextMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa fa-chevron-right"></i></button></a>
+                        @if (!$isCurrentMonth)
+                            <a href="{{ $currentMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2">今月</button></a>
+                        @endif
+                        <a href="{{ $previousMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa fa-chevron-left"></i> 先月</button></a>
+                    </div>
                 </div>
-                <p class="footer">ご不明な点がございましたら、スタッフまでお声がけください。</p>
-            </section>
-        </main>
-    </body>
-</html>
+            </div>
+
+            <div class="col-12">
+                <p class="lead">保護施設「とりの駅」</p>
+                <div class="responsive-area">
+                    <table class="table table-bordered table-calendar">
+                        <thead>
+                        <tr>
+                            <th class="bg-sun">日</th>
+                            <th>月</th>
+                            <th>火</th>
+                            <th>水</th>
+                            <th>木</th>
+                            <th>金</th>
+                            <th class="bg-sat">土</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($calendarWeeks as $week)
+                            <tr>
+                                @foreach ($week as $day)
+                                    @php
+                                        $date = $day['date'];
+                                        $isSunday = $date->dayOfWeek === \Illuminate\Support\Carbon::SUNDAY;
+                                        $isSaturday = $date->dayOfWeek === \Illuminate\Support\Carbon::SATURDAY;
+                                        $cellClass = $isSunday ? 'bg-sun2' : ($isSaturday ? 'bg-sat2' : '');
+                                    @endphp
+                                    <td class="{{ $cellClass }}">
+                                        <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
+                                            <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
+                                            <span id="schedule_{{ $date->format('Y-n-j') }}"></span>
+                                            @if ($day['isCurrentMonth'])
+                                                <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="schedule::{{ $date->format('Y-n-j') }}"></i>
+                                            @endif
+                                        </div>
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mode-change">
+        <form name="login" method="post" action="https://kotori-yado.com/scheduler/auth/unlock/?p=2026-08-21" class="form-login">
+            <input type="password" class="form-control" name="pass" id="pass" placeholder="パスワード" value="pass123" style="width: 100px;">
+            <button type="submit" class="btn btn-sm btn-primary">編集</button>
+        </form>
+    </div>
+@endsection
+
+@section('javascript')
+@endsection

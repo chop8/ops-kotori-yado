@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=10"><!---->
+    @hasSection('title')
+        <title>@yield('title')｜小鳥のやど</title>
+    @else
+        <title>小鳥のやど</title>
+    @endif
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('css/reception/bootstrap.min.css') }}">
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGKTAh5PVlGOfQNHSoD2xbD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/reception/common.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/reception/drawer.css') }}" rel="stylesheet">--}}
+    @yield('styles')
+</head>
+
+<body>
+
+<!-- スマホ用メニュー START -->
+<nav class="navbar navbar-sp navbar-expand-md navbar-light d-md-none">
+    <button class="navbar-toggler" type="button" id="sidr-right">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<div id="sidr" class="d-none">
+    <header class="py-1 px-3 border-bottom d-flex justify-content-between">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <button type="button" class="dwrapper-close btn btn-light btn-sm bg-white"><i class="fa fa-times"></i> 閉じる</button>
+    </header>
+    <ul class="list-group" style="margin: 10px;">
+        <li class="list-group-item"><a href="/"><i class="fa fa-home"></i> HOME <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="/calendar/"><i class="fa fa-calendar"></i> カレンダー <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="/scheduler/"><i class="fa fa-calendar"></i> スケジュール <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="/scheduler_stay/"><i class="fa fa-bed"></i> 予約リスト <i class="fa fa-angle-right"></i></a></li>
+    </ul>
+    <footer class="py-1 px-3 border-top d-flex justify-content-between">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <button type="button" class="dwrapper-close btn btn-light btn-sm bg-white"><i class="fa fa-times"></i> 閉じる</button>
+    </footer>
+</div>
+<div class="d-none" id="dwrapper"></div><!-- ドロワーオーバーラップ用 -->
+<!-- スマホ用メニュー END -->
+
+<!-- PC用メニュー START -->
+<nav class="navbar navbar-pc navbar-expand-md d-none d-md-block">
+    <a class="navbar-brand" href="#"><img src="https://kotori-yado.com/scheduler/images/header_no_btn.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsE1" aria-controls="navbarsE1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsE1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link text-dark" href="/">Home</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="/calendar/">カレンダー</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="/scheduler/">スケジュール</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/scheduler_stay/">予約リスト</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- PC用メニュー END -->
+
+<main role="main" class="mb-5">
+    @yield('content')
+</main><!-- /.container -->
+
+<footer class="mt-auto py-3 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                Copyright(C)　小鳥のやど　All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</footer><!-- /footer -->
+
+<p id="page-top"><i class="fa fa-4x fa-chevron-circle-up" aria-hidden="true"></i></p>
+
+@yield('javascript')
+
+</body>
+</html>
