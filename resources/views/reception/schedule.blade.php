@@ -30,6 +30,13 @@
                 </tbody>
             </table>
         </div>
-        <a href="{{ route('reception.index') }}" class="btn btn-secondary mt-3">カレンダーに戻る</a>
+        <a href="{{ route('reception.index', ['m' => $month]) }}" class="btn btn-secondary mt-3">カレンダーに戻る</a>
+    </div>
+
+    <div class="mode-change">
+        <form name="login" method="post" action="https://kotori-yado.com/scheduler/auth/unlock/?p=2026-08-21" class="form-login">
+            <input type="password" class="form-control" name="pass" id="pass" placeholder="パスワード" value="pass123" style="width: 100px;">
+            <button type="submit" class="btn btn-sm btn-primary">編集</button>
+        </form>
     </div>
 @endsection

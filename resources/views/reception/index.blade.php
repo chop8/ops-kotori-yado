@@ -30,7 +30,6 @@
             </div>
 
             <div class="col-12">
-                <p class="lead">保護施設「とりの駅」</p>
                 <div class="responsive-area">
                     <table class="table table-bordered table-calendar">
                         <thead>

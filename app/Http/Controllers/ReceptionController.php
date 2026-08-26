@@ -59,8 +59,11 @@ class ReceptionController extends Controller
 
     public function schedule(string $date): View
     {
-        $start = "08:30";// 開始時刻
-        $end = "18:30";// 終了時刻
+        $targetDate = Carbon::parse($date);
+        $month = $targetDate->format('Y-m');
+
+        $start = "09:00";// 開始時刻
+        $end = "18:00";// 最終時刻
         $excluded = ["12:00", "12:30"];// 除去する時間帯
 
         $startTime = Carbon::createFromFormat('H:i', $start);
@@ -89,6 +92,7 @@ class ReceptionController extends Controller
 
         return view('reception.schedule', [
             'date' => $date,
+            'month' => $month,
             'timeSlots' => $timeSlots,
             'resources' => $resources,
         ]);
