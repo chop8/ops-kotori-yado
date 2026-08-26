@@ -7,6 +7,14 @@
 
 @section('content')
     <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('reception.index', ['m' => $month]) }}">{{ \Illuminate\Support\Carbon::parse($date)->format('Y年n月') }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Carbon::parse($date)->format('d日（D）') }}</li>
+            </ol>
+        </nav>
+
         <h4>{{ $date }} の予定</h4>
         <div class="responsive-area">
             <table class="table table-bordered table-schedule">
