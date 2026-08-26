@@ -59,12 +59,33 @@ class ReceptionController extends Controller
 
     public function schedule(string $date): View
     {
-        // 日付のバリデーションなどを必要に応じて追加
+        $start = "08:30";// 開始時刻
+        $end = "18:30";// 終了時刻
+        $excluded = ["12:00", "12:30"];// 除去する時間帯
+
+        $startTime = Carbon::createFromFormat('H:i', $start);
+        $endTime = Carbon::createFromFormat('H:i', $end);
+
         $timeSlots = [];
-        for ($i = 9; $i <= 18; $i++) {
-            $timeSlots[] = sprintf('%02d:00', $i);
+        $currentTime = $startTime->copy();
+
+        while ($currentTime <= $endTime) {
+            $timeString = $currentTime->format('H:i');
+            if (!in_array($timeString, $excluded)) {
+                $timeSlots[] = $timeString;
+            }
+            $currentTime->addMinutes(30);
         }
-        $resources = ['会議室A', '会議室B', '会議室C'];
+
+        $resources = [
+            'IN/OUT' => 'td-inout',
+            '名前' => 'td-name',
+            'ケージ数' => 'td-cage',
+            '利用' => 'td-use',
+            '区分' => 'td-kubun',
+            'お迎え日時' => 'td-pickup',
+            '詳細・金額' => 'td-memo',
+        ];
 
         return view('reception.schedule', [
             'date' => $date,

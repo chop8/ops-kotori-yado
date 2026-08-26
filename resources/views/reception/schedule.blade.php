@@ -7,14 +7,14 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>{{ $date }} の予定</h1>
+        <h4>{{ $date }} の予定</h4>
         <div class="responsive-area">
             <table class="table table-bordered table-schedule">
                 <thead>
                     <tr>
-                        <th>時間</th>
-                        @foreach ($resources as $resource)
-                            <th>{{ $resource }}</th>
+                        <th class="td-time">時間</th>
+                        @foreach ($resources as $name => $class)
+                            <th class="{{ $class }}">{{ $name }}</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -22,8 +22,8 @@
                     @foreach ($timeSlots as $time)
                         <tr>
                             <th>{{ $time }}</th>
-                            @foreach ($resources as $resource)
-                                <td><div></div></td>
+                            @foreach ($resources as $class)
+                                <td class="{{ $class }}"><div></div></td>
                             @endforeach
                         </tr>
                     @endforeach

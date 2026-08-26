@@ -11,20 +11,35 @@
     text-align: center;
 }
 .table-schedule tbody th {
-    min-width: 130px;
+    text-align: center;
 }
 .table-schedule th {
     background-color: #EEE;
 }
 .table-schedule tbody th,
 .table-schedule tbody td {
-    padding: 0;
+    padding: 10px;
 }
 .table-schedule th > div,
 .table-schedule td > div {
     position: relative;
     padding: 10px;
 }
+
+.td-time { width: 100px;}
+.td-inout { width: 85px;}
+.td-name { width: 150px; }
+.td-cage { width: 85px; }
+.td-use { width: 85px; }
+.td-kubun { width: 85px; }
+.td-pickup { width: 100px; }
+.td-memo { width: auto; }
+
+
+
+
+
+
 .rowframe01 .edit-btn,
 .table-schedule .edit-btn {
     cursor: pointer;
