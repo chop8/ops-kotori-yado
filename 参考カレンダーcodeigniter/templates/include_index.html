@@ -1,0 +1,139 @@
+      <div class="container mt-4">
+		<div class="info-box">
+			<div class="rowframe01">
+				<p id="news">
+				{if $news}
+					{$news}
+				{else}
+					<span class="text-muted">月のお知らせはありません</span>
+				{/if}
+				</p>
+				<i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="news::{$year}-{$month}-01"></i>
+			</div>
+
+			<div class="rowframe01">
+				<p id="info">
+				{if $info}
+					{$info}
+				{else}
+					<span class="text-muted">案内情報はありません</span>
+				{/if}
+				</p>
+				<i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="info"></i>
+			</div>
+		</div>
+		  <div class="row">
+			  <div class="col-md-12">
+				  <div class="grid">
+					  <div class="grid-header">
+						  <span class="grid-title">{$year}年{$month}月</span>
+						  <a href="{$base_url}?m={$next}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa fa-chevron-right"></i></button></a>
+						  {if $is_m}
+						  <a href="{$base_url}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2">今月</button></a>
+						  {/if}
+						  <a href="{$base_url}?m={$prev}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa fa-chevron-left"></i> 先月</button></a>
+					  </div>
+				  </div>
+			  </div>
+
+			  <div class="col-12">
+				  <div class="responsive-area">
+					  <table class="table table-bordered table-calendar">
+						  <thead>
+						  <tr>
+							  <th class="bg-sun">日</th>
+							  <th>月</th>
+							  <th>火</th>
+							  <th>水</th>
+							  <th>木</th>
+							  <th>金</th>
+							  <th class="bg-sat">土</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						  <tr>
+							  {section name="i" start="0" step="1" loop="42"}
+							  {assign var="i" value=$smarty.section.i.index}
+							  {assign var="day" value=$month_data.$i.day}
+							  {if $i%7==0}<tr><tr>{/if}
+							  <td class="{if $i%7==0}bg-sun2{/if}{if $i%7==6}bg-sat2{/if}">
+								  {if $day}
+								  <div>
+									  <div class="day">{$day}</div>
+									  <span id="schedule_{$year}-{$month}-{$day}">{$month_data.$i.schedule}</span>
+									  {if $day}
+									  <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="schedule::{$year}-{$month}-{$day}"></i>
+									  {/if}
+								  </div>
+								  {else}
+								  <div class="bg-inactive">
+									  <div class="day day-inactive">{$month_data.$i.day_inactive}</div>
+								  </div>
+								  {/if}
+							  </td>
+							  {/section}
+						  </tr>
+						  </tbody>
+					  </table>
+				  </div>
+			  </div>
+
+		  </div>
+
+          <!-- モーダル（お知らせ） -->
+          <div class="modal fade" id="infoModal" {*<!--tabindex="-1"-->CKEditor不具合回避*} role="dialog">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <form>
+                          <div class="modal-body">
+                              <div class="form-group">
+                                  <label for="comment">表示内容</label>
+                                  <textarea class="form-control ckeditor" id="comment" rows="3"></textarea>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <input type="hidden" id="datatype" value="">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                              <a href="{$base_url}ajax_edit/" type="submit" class="btn btn-primary submit-comment"> 更新 </a>
+                          </div><!-- /.modal-footer -->
+                      </form>
+                  </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+		  <!-- モーダル （スケジュール）-->
+          <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <form>
+                          <div class="modal-body">
+                              <div class="form-group">
+                                  <label for="comment">表示内容</label>
+                                  <textarea class="form-control" id="comment" rows="3"></textarea>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <input type="hidden" id="datatype" value="">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                              <a href="{$base_url}ajax_edit/" type="submit" class="btn btn-primary submit-comment"> 更新 </a>
+                          </div><!-- /.modal-footer -->
+                      </form>
+                  </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+      </div>
+
+	  {*■編集モードへの切り替え■*}
+	  <div class="mode-change">
+		  {if $is_login}
+		  <form name="login" method="post" action="{$base_url}auth/lock/?p={$start_date}" class="form-login">
+			  <button type="submit" class="btn btn-sm btn-primary">ログアウト</button>
+		  </form>
+		  {else}
+		  <form name="login" method="post" action="{$base_url}auth/unlock/?p={$start_date}" class="form-login">
+			  <input type="password" class="form-control" name="pass" id="pass" placeholder="パスワード" value="{$pass}" style="width: 100px;">
+			  <button type="submit" class="btn btn-sm btn-primary">編集</button>
+		  </form>
+		  {/if}
+	  </div>

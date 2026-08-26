@@ -1,0 +1,116 @@
+.sidr {
+    display: block;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    z-index: 999999;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #f8f8f8;
+    color: #333;
+    /*box-shadow: 0 0 5px 5px #ebebeb inset;*/
+}
+.sidr .sidr-inner {
+    padding: 0 0 15px;
+}
+.sidr .sidr-inner > p {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.sidr.right {
+    left: auto;
+    right: -300px;
+}
+.sidr.left {
+    left: -300px;
+    right: auto;
+}
+/*------------*/
+.sidr header .btn,
+.sidr footer .btn {
+    padding: 3px 5px 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-color: #CCC;
+    color: #999;
+}
+.sidr header .btn:hover,
+.sidr footer .btn:hover {
+    color: #CCC;
+}
+
+
+
+/*------------*/
+.sidr .list-group-item > a {
+    display: block;
+}
+.sidr .list-group-item > a:active,
+.sidr .list-group-item > a:hover,
+.sidr .list-group-item > a:focus {
+    text-decoration: none;
+}
+.sidr .list-group .fa {
+    font-size: 1.2em;
+    color: #666;
+}
+.sidr .list-group .fa-angle-right,
+.sidr .list-group .fa-plus,
+.sidr .list-group .fa-plus-square-o {
+    float: right;
+    color: #CCC;
+    padding-top: 2px;
+}
+/*------------*/
+#collapseMenu02 li {
+    margin: 5px 0;
+}
+#collapseMenu02 li a {
+    display: block;
+}
+#collapseMenu02 li a:active,
+#collapseMenu02 li a:hover,
+#collapseMenu02 li a:focus {
+    text-decoration: none;
+}
+
+
+/*アイコンカラー*/
+.sidr .list-group .fa-home { color: #999; }
+.sidr .list-group .fa-info-circle { color: #67b5b7; }
+.sidr .list-group .fa-cube { color: #6495ed; }
+.sidr .list-group .fa-shopping-basket { color: #e49e61; }
+.sidr .list-group .fa-heart { color: #f19ca7; }
+.sidr .list-group .fa-flag { color: #9fc24d; }
+.sidr .list-group .fa-truck { color: #8da0b6; }
+.sidr .list-group .fa-gratipay { color: #ff8686; }
+.sidr .list-group .fa-smile-o { color: #ee7800; }
+.sidr .list-group .fa-camera-retro { color: #666666; }
+.sidr .list-group .fa-question-circle { color: #67b5b7; }
+
+/*オーバーラップ用-----*/
+#dwrapper {
+    display: block;
+    position: fixed;
+    left: 0; top: 0;
+    z-index: 999997;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+/*開閉速度------------*/
+.sidr .collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.15s ease;
+    transition: height 0.15s ease;
+}
+
+.body-fixed {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
