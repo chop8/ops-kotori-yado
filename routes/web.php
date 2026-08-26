@@ -9,3 +9,7 @@ Route::get('/', function () {
 
 Route::get('/reception/', [ReceptionController::class, 'index'])
     ->name('reception.index');
+
+Route::get('/reception/{date}', [ReceptionController::class, 'schedule'])
+    ->name('reception.show')
+    ->where('date', '\d{4}-\d{1,2}-\d{1,2}');

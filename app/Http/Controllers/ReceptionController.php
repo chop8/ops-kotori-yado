@@ -56,4 +56,20 @@ class ReceptionController extends Controller
             'nextMonthUrl' => route('reception.index', ['m' => $month->copy()->addMonth()->format('Y-m')]),
         ]);
     }
+
+    public function schedule(string $date): View
+    {
+        // 日付のバリデーションなどを必要に応じて追加
+        $timeSlots = [];
+        for ($i = 9; $i <= 18; $i++) {
+            $timeSlots[] = sprintf('%02d:00', $i);
+        }
+        $resources = ['会議室A', '会議室B', '会議室C'];
+
+        return view('reception.schedule', [
+            'date' => $date,
+            'timeSlots' => $timeSlots,
+            'resources' => $resources,
+        ]);
+    }
 }

@@ -56,7 +56,9 @@
                                     @endphp
                                     <td class="{{ $cellClass }}">
                                         <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
-                                            <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
+                                            <a href="{{ route('reception.show', ['date' => $date->format('Y-m-d')]) }}" class="text-decoration-none text-dark">
+                                                <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
+                                            </a>
                                             <span id="schedule_{{ $date->format('Y-n-j') }}"></span>
                                             @if ($day['isCurrentMonth'])
                                                 <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="schedule::{{ $date->format('Y-n-j') }}"></i>
