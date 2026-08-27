@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('title', '予約表')
 @section('styles')
-    <link href="{{ asset('css/reception/schedule.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/reception/reception.css') }}" rel="stylesheet">
     <link href="{{ asset('css/reception/calendar.css') }}" rel="stylesheet">
 @endsection
 
@@ -75,10 +75,20 @@
     </div>
 
     <div class="mode-change">
-        <form name="login" method="post" action="https://kotori-yado.com/scheduler/auth/unlock/?p=2026-08-21" class="form-login">
-            <input type="password" class="form-control" name="pass" id="pass" placeholder="パスワード" value="pass123" style="width: 100px;">
-            <button type="submit" class="btn btn-sm btn-primary">編集</button>
-        </form>
+        @if(Cookie::get('is_login'))
+            <form name="login" method="post" action="{{ url('/auth/lock') }}?p={{ $month->format('Y-m') }}" class="form-login">
+                @csrf
+                <input type="hidden" name="return_url" value="{{ url()->current() }}?m={{ $month->format('Y-m') }}">
+                <button type="submit" class="btn btn-sm btn-primary">ログアウト</button>
+            </form>
+        @else
+            <form name="login" method="post" action="{{ url('/auth/unlock') }}?p={{ $month->format('Y-m') }}" class="form-login">
+                @csrf
+                <input type="hidden" name="return_url" value="{{ url()->current() }}?m={{ $month->format('Y-m') }}">
+                <input type="password" class="form-control" name="pass" id="pass" placeholder="パスワード" style="width: 100px;">
+                <button type="submit" class="btn btn-sm btn-primary">編集</button>
+            </form>
+        @endif
     </div>
 @endsection
 
