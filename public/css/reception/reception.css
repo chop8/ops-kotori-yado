@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.pull-right {
+    float: right;
+}
 .table-schedule {
     min-width: 1110px;
 }
@@ -34,7 +37,7 @@
 .td-kubun { width: 85px; }
 .td-pickup { width: 100px; }
 .td-memo { width: auto; }
-
+.td-edit { width: 100px; }
 
 
 

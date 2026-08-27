@@ -20,11 +20,11 @@
                 <div class="grid">
                     <div class="grid-header">
                         <span class="grid-title">{{ $month->format('Y年n月') }}</span>
-                        <a href="{{ $nextMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa fa-chevron-right"></i></button></a>
+                        <a href="{{ $nextMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa-solid fa-chevron-right"></i></button></a>
                         @if (!$isCurrentMonth)
                             <a href="{{ $currentMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2">今月</button></a>
                         @endif
-                        <a href="{{ $previousMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa fa-chevron-left"></i> 先月</button></a>
+                        <a href="{{ $previousMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa-solid fa-chevron-left"></i> 先月</button></a>
                     </div>
                 </div>
             </div>

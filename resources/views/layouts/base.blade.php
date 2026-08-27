@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/reception/bootstrap.min.css') }}">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/b755a4e291.js" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/reception/common.css') }}" rel="stylesheet">

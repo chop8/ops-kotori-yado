@@ -19,22 +19,32 @@
         <div class="responsive-area">
             <table class="table table-bordered table-schedule">
                 <thead>
-                    <tr>
-                        <th class="td-time">時間</th>
-                        @foreach ($resources as $name => $class)
-                            <th class="{{ $class }}">{{ $name }}</th>
-                        @endforeach
-                    </tr>
+                <tr>
+                    <th class="td-time">時間</th>
+                    @foreach ($resources as $name => $class)
+                        <th class="{{ $class }}">{{ $name }}</th>
+                    @endforeach
+                    @if(Cookie::get('is_login'))
+                        <th>編集</th>
+                    @endif
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($timeSlots as $time)
-                        <tr>
-                            <th>{{ $time }}</th>
-                            @foreach ($resources as $class)
-                                <td class="{{ $class }}"><div></div></td>
-                            @endforeach
-                        </tr>
-                    @endforeach
+                @foreach ($timeSlots as $time)
+                    <tr>
+                        <th>{{ $time }}</th>
+                        @foreach ($resources as $class)
+                            <td class="{{ $class }}"><div></div></td>
+                        @endforeach
+                        @if(Cookie::get('is_login'))
+                            <td class="td-edit text-center">
+                                <button type="button" class="btn btn-sm btn-link p-0" onclick="openEditModal('{{ $time }}')">
+                                    <i class="fa-solid fa-pen-to-square h6"></i>
+                                </button>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
