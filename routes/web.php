@@ -13,6 +13,12 @@ Route::get('/', function () {
 Route::get('/reception/', [ReceptionController::class, 'index'])
     ->name('reception.index');
 
+Route::post('/reception/save', [ReceptionController::class, 'save'])
+    ->name('reception.save');
+
+Route::get('/reception/get-data', [ReceptionController::class, 'getData'])
+    ->name('reception.getData');
+
 Route::get('/reception/{date}', [ReceptionController::class, 'schedule'])
     ->name('reception.show')
     ->where('date', '\d{4}-\d{1,2}-\d{1,2}');

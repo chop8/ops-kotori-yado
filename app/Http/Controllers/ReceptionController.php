@@ -97,4 +97,49 @@ class ReceptionController extends Controller
             'resources' => $resources,
         ]);
     }
+
+    public function save(Request $request)
+    {
+        $data = $request->validate([
+            'date' => 'required|string',
+            'time_slot' => 'required|string',
+            'in_out' => 'nullable|string',
+            'name' => 'nullable|string',
+            'cage_count' => 'nullable|numeric',
+            'type' => 'nullable|string',
+            'category' => 'nullable|string',
+            'pickup_at' => 'nullable|string',
+            'memo' => 'nullable|string',
+        ]);
+
+        $reception = \App\Models\Reception::where('date', $data['date'])
+            ->where('time_slot', $data['time_slot'])
+            ->first();
+
+        $isEmpty = empty($data['in_out']) && empty($data['name']) && empty($data['cage_count']) &&
+                   empty($data['type']) && empty($data['category']) && empty($data['pickup_at']) && empty($data['memo']);
+
+        if ($isEmpty) {
+            if ($reception) {
+                $reception->delete();
+            }
+        } else {
+            if ($reception) {
+                $reception->update($data);
+            } else {
+                \App\Models\Reception::create($data);
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function getData(Request $request)
+    {
+        $reception = \App\Models\Reception::where('date', $request->query('date'))
+            ->where('time_slot', $request->query('time_slot'))
+            ->first();
+
+        return response()->json($reception);
+    }
 }

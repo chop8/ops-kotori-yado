@@ -85,6 +85,9 @@
 
 <p id="page-top"><i class="fa fa-4x fa-chevron-circle-up" aria-hidden="true"></i></p>
 
+<!-- Bootstrap JS (bundle contains popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 @yield('javascript')
 
 </body>
