@@ -53,11 +53,16 @@
                                         $isSaturday = $date->dayOfWeek === \Illuminate\Support\Carbon::SATURDAY;
                                         $cellClass = $isSunday ? 'bg-sun2' : ($isSaturday ? 'bg-sat2' : '');
                                     @endphp
-                                    <td class="{{ $cellClass }}">
+                                    <td class="{{ $cellClass }}" onclick="window.location.href='{{ route('reception.show', ['date' => $date->format('Y-m-d')]) }}';" style="cursor: pointer;">
                                         <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
-                                            <a href="{{ route('reception.show', ['date' => $date->format('Y-m-d')]) }}" class="text-decoration-none text-dark">
-                                                <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
-                                            </a>
+                                            <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
+                                            <div class="reception-counts small">
+                                                <dl class="mb-0">
+                                                    @if($day['inCount'] > 0)<div class="d-flex"><dt class="me-1">IN</dt><dd class="mb-0">：<span class="count-number">{{ $day['inCount'] }}</span>件</dd></div>@endif
+                                                    @if($day['outCount'] > 0)<div class="d-flex"><dt class="me-1">OUT</dt><dd class="mb-0">：<span class="count-number">{{ $day['outCount'] }}</span>件</dd></div>@endif
+                                                    @if($day['unknownCount'] > 0)<div class="d-flex"><dt class="me-1">不明</dt><dd class="mb-0">：<span class="count-number">{{ $day['unknownCount'] }}</span>件</dd></div>@endif
+                                                </dl>
+                                            </div>
                                             <span id="schedule_{{ $date->format('Y-n-j') }}"></span>
                                             @if ($day['isCurrentMonth'])
                                                 <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="schedule::{{ $date->format('Y-n-j') }}"></i>

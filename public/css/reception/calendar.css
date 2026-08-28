@@ -77,3 +77,14 @@
 .bg-sun2 > .day {
     color: #e73939;
 }
+.reception-counts dt {
+    width: 30px;
+    font-weight: normal;
+}
+.reception-counts dd {
+    font-weight: normal;
+}
+.reception-counts .count-number {
+    font-weight: bold;
+    font-size: 1.1em;
+}

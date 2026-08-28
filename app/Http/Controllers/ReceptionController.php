@@ -36,9 +36,22 @@ class ReceptionController extends Controller
         $week = [];
 
         for ($date = $calendarStart->copy(); $date <= $calendarEnd; $date->addDay()) {
+            $dateString = $date->format('Y-m-d');
+
+            // 各日のIN/OUT件数を取得
+            $receptionsForDay = \App\Models\Reception::where('date', $dateString)->get();
+            $inCount = $receptionsForDay->where('in_out', 'IN')->count();
+            $outCount = $receptionsForDay->where('in_out', 'OUT')->count();
+            $unknownCount = $receptionsForDay->filter(function ($item) {
+                return empty($item->in_out);
+            })->count();
+
             $week[] = [
                 'date' => $date->copy(),
                 'isCurrentMonth' => $date->month === $month->month,
+                'inCount' => $inCount,
+                'outCount' => $outCount,
+                'unknownCount' => $unknownCount,
             ];
 
             if (count($week) === 7) {
