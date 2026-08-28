@@ -21,8 +21,8 @@
                 <thead>
                 <tr>
                     <th class="td-time">時間</th>
-                    @foreach ($resources as $name => $class)
-                        <th class="{{ $class }}">{{ $name }}</th>
+                    @foreach ($resources as $name => $resource)
+                        <th class="{{ $resource['class'] }}">{{ $name }}</th>
                     @endforeach
                     @if(Cookie::get('is_login'))
                         <th>編集</th>
@@ -36,8 +36,12 @@
                     @endphp
                     <tr>
                         <th>{{ $time }}</th>
-                        @foreach ($resources as $name => $field)
-                            <td>
+                        @foreach ($resources as $name => $resource)
+                            @php
+                                $field = $resource['field'];
+                                $class = $resource['class'];
+                            @endphp
+                            <td class="{{ $class }}">
                                 @if ($field === 'memo')
                                     {!! nl2br(e($data ? $data->$field : '')) !!}
                                 @else
@@ -69,8 +73,11 @@
                     <input type="hidden" name="date" value="{{ $date }}">
                     <input type="hidden" name="time_slot" id="modalTimeSlot">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">編集: <span id="modalDateDisplay"></span> <span id="modalTimeDisplay"></span></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="editModalLabel"><span id="modalDateDisplay"></span> <span id="modalTimeDisplay"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="display:none;"></button>
+                        <button type="button" class="btn btn-link text-dark p-0" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
@@ -89,15 +96,15 @@
                         </div>
                         <div class="mb-3">
                             <label>利用</label><br>
-                            <input type="radio" name="type" value="新規"> 新規
-                            <input type="radio" name="type" value="既存"> 既存
-                            <input type="radio" name="type" value=""> 未選択
+                            <input type="radio" name="type" value="新規"> <label>新規</label>
+                            <input type="radio" name="type" value="既存"> <label>既存</label>
+                            <input type="radio" name="type" value=""> <label>未選択</label>
                         </div>
                         <div class="mb-3">
                             <label>区分</label><br>
-                            <input type="radio" name="category" value="持込"> 持込
-                            <input type="radio" name="category" value="レンタル"> レンタル
-                            <input type="radio" name="category" value=""> 未選択
+                            <input type="radio" name="category" value="持込"> <label>持込</label>
+                            <input type="radio" name="category" value="レンタル"> <label>レンタル</label>
+                            <input type="radio" name="category" value=""> <label>未選択</label>
                         </div>
                         <div class="mb-3">
                             <label>お迎え日時</label>

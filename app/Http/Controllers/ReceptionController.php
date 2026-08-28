@@ -81,13 +81,13 @@ class ReceptionController extends Controller
         }
 
         $resources = [
-            'IN/OUT' => 'in_out',
-            '名前' => 'name',
-            'ケージ数' => 'cage_count',
-            '利用' => 'type',
-            '区分' => 'category',
-            'お迎え日時' => 'pickup_at',
-            '詳細・金額' => 'memo',
+            'IN/OUT' =>   ['field' => 'in_out',      'class' => 'td-inout text-center'],
+            '名前' =>      ['field' => 'name',       'class' => 'td-name'],
+            'ケージ数' =>   ['field' => 'cage_count', 'class' => 'td-cage text-right'],
+            '利用' =>      ['field' => 'type',       'class' => 'td-use text-center'],
+            '区分' =>      ['field' => 'category',   'class' => 'td-kubun text-center'],
+            'お迎え日時' => ['field' => 'pickup_at',  'class' => 'td-pickup'],
+            '詳細・金額' => ['field' => 'memo',       'class' => 'td-memo'],
         ];
 
         // 該当日の全データを取得し、時間枠をキーにした連想配列に変換

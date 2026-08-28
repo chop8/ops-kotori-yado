@@ -22,13 +22,13 @@
 .table-schedule tbody th,
 .table-schedule tbody td {
     padding: 10px;
+    vertical-align: middle;
 }
 .table-schedule th > div,
 .table-schedule td > div {
     position: relative;
     padding: 10px;
 }
-
 .td-time { width: 100px;}
 .td-inout { width: 85px;}
 .td-name { width: 150px; }
@@ -38,10 +38,6 @@
 .td-pickup { width: 100px; }
 .td-memo { width: auto; }
 .td-edit { width: 60px; }
-
-
-
-
 
 .rowframe01 .edit-btn,
 .table-schedule .edit-btn {
@@ -107,4 +103,11 @@
 /* navbar-sp */
 .navbar-sp {
     border-bottom: 2px solid #DDD;
+}
+/* #editForm */
+#editForm .mb-3 > label:nth-child(1) {
+    font-weight: bold;
+}
+#editForm label {
+    margin-right: 10px;
 }
