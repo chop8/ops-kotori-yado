@@ -7,13 +7,12 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="rowframe01">
-            <p id="info">
-                編集を行うには、画面右下のパスワード欄に入力のうえ<span style="color:#FFFFFF;"><span style="background-color:#3366ff;"> 編集 </span></span>ボタンを押してください。<br />
-                各項目に表示の編集アイコン（鉛筆マーク）を押すことで入力フォームが表示されます。
-            </p>
-            <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="info"></i>
-        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $month->format('Y年n月') }}</li>
+            </ol>
+        </nav>
 
         <div class="row">
             <div class="col-md-12">
