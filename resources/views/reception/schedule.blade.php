@@ -31,10 +31,19 @@
                 </thead>
                 <tbody>
                 @foreach ($timeSlots as $time)
+                    @php
+                        $data = $receptions->get($time);
+                    @endphp
                     <tr>
                         <th>{{ $time }}</th>
-                        @foreach ($resources as $class)
-                            <td class="{{ $class }}"><div></div></td>
+                        @foreach ($resources as $name => $field)
+                            <td>
+                                @if ($field === 'memo')
+                                    {!! nl2br(e($data ? $data->$field : '')) !!}
+                                @else
+                                    {{ $data ? $data->$field : '' }}
+                                @endif
+                            </td>
                         @endforeach
                         @if(Cookie::get('is_login'))
                             <td class="td-edit text-center">

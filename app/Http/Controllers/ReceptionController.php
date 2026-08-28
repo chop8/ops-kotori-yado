@@ -81,20 +81,26 @@ class ReceptionController extends Controller
         }
 
         $resources = [
-            'IN/OUT' => 'td-inout',
-            '名前' => 'td-name',
-            'ケージ数' => 'td-cage',
-            '利用' => 'td-use',
-            '区分' => 'td-kubun',
-            'お迎え日時' => 'td-pickup',
-            '詳細・金額' => 'td-memo',
+            'IN/OUT' => 'in_out',
+            '名前' => 'name',
+            'ケージ数' => 'cage_count',
+            '利用' => 'type',
+            '区分' => 'category',
+            'お迎え日時' => 'pickup_at',
+            '詳細・金額' => 'memo',
         ];
+
+        // 該当日の全データを取得し、時間枠をキーにした連想配列に変換
+        $receptions = \App\Models\Reception::where('date', $date)
+            ->get()
+            ->keyBy('time_slot');
 
         return view('reception.schedule', [
             'date' => $date,
             'month' => $month,
             'timeSlots' => $timeSlots,
             'resources' => $resources,
+            'receptions' => $receptions,
         ]);
     }
 
