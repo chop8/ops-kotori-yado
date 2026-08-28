@@ -11,9 +11,9 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $month->format('Y年n月') }}</li>
+                <li style="margin-left: auto;"><a href="" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-print"></i> 印刷用ページ</a></li>
             </ol>
         </nav>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="grid">
