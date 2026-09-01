@@ -110,5 +110,6 @@
     .table-calendar tbody td.bg-inactive { background-color: #EEEEEE !important; }
     .table-calendar thead th.bg-sat { background-color: #D3DFED !important; }
     .table-calendar thead th.bg-sun { background-color: #EFCFC5 !important; }
-    .table-calendar th { background-color: #EEE !important; }
+    .table-calendar th,
+    .table-schedule th { background-color: #EEE !important; }
 }

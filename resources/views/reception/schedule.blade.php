@@ -12,6 +12,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('reception.index', ['m' => $month]) }}">{{ \Illuminate\Support\Carbon::parse($date)->format('Y年n月') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Carbon::parse($date)->format('d日（D）') }}</li>
+                <li style="margin-left: auto;" class="no-print"><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.print();"><i class="fa-solid fa-print"></i> 印刷</button></li>
             </ol>
         </nav>
 
@@ -61,11 +62,11 @@
                 </tbody>
             </table>
         </div>
-        <a href="{{ route('reception.index', ['m' => $month]) }}" class="btn btn-secondary mt-3">カレンダーに戻る</a>
+        <a href="{{ route('reception.index', ['m' => $month]) }}" class="btn btn-secondary mt-3 no-print">カレンダーに戻る</a>
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade no-print" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="editForm">
@@ -190,7 +191,7 @@
         });
     </script>
 
-    <div class="mode-change">
+    <div class="mode-change no-print">
         @if(Cookie::get('is_login'))
             <form name="login" method="post" action="{{ url('/auth/lock') }}?p={{ $date }}" class="form-login">
                 @csrf
