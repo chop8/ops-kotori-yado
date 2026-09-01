@@ -7,11 +7,11 @@
 
 @section('content')
     <div class="container mt-4">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="no-print">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $month->format('Y年n月') }}</li>
-                <li style="margin-left: auto;"><a href="{{ route('reception.print', ['m' => $month->format('Y-m')]) }}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-print"></i> 印刷用ページ</a></li>
+                <li style="margin-left: auto;"><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.print();"><i class="fa-solid fa-print"></i> 印刷ダイアログ</button></li>
             </ol>
         </nav>
         <div class="row">
@@ -19,11 +19,13 @@
                 <div class="grid">
                     <div class="grid-header">
                         <span class="grid-title">{{ $month->format('Y年n月') }}</span>
-                        <a href="{{ $nextMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa-solid fa-chevron-right"></i></button></a>
-                        @if (!$isCurrentMonth)
-                            <a href="{{ $currentMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2">今月</button></a>
-                        @endif
-                        <a href="{{ $previousMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa-solid fa-chevron-left"></i> 先月</button></a>
+                        <div class="no-print d-inline">
+                            <a href="{{ $nextMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right">翌月 <i class="fa-solid fa-chevron-right"></i></button></a>
+                            @if (!$isCurrentMonth)
+                                <a href="{{ $currentMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2">今月</button></a>
+                            @endif
+                            <a href="{{ $previousMonthUrl }}"><button type="button" class="btn btn-xs page-link text-dark d-inline-block btn-radius pull-right mr-2"><i class="fa-solid fa-chevron-left"></i> 先月</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,8 +53,10 @@
                                         $isSunday = $date->dayOfWeek === \Illuminate\Support\Carbon::SUNDAY;
                                         $isSaturday = $date->dayOfWeek === \Illuminate\Support\Carbon::SATURDAY;
                                         $cellClass = $isSunday ? 'bg-sun2' : ($isSaturday ? 'bg-sat2' : '');
+                                        $tdAttributes = 'class="' . $cellClass . '"';
+                                        $tdAttributes .= " onclick=\"window.location.href='" . route('reception.show', ['date' => $date->format('Y-m-d')]) . "';\" style=\"cursor: pointer;\"";
                                     @endphp
-                                    <td class="{{ $cellClass }}" onclick="window.location.href='{{ route('reception.show', ['date' => $date->format('Y-m-d')]) }}';" style="cursor: pointer;">
+                                    <td {!! $tdAttributes !!}>
                                         <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
                                             <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
                                             <div class="reception-counts small">
@@ -64,7 +68,7 @@
                                             </div>
                                             <span id="schedule_{{ $date->format('Y-n-j') }}"></span>
                                             @if ($day['isCurrentMonth'])
-                                                <i class="fa fa-lg fa-pencil-square-o edit-btn" data-type="schedule::{{ $date->format('Y-n-j') }}"></i>
+                                                <i class="fa fa-lg fa-pencil-square-o edit-btn no-print" data-type="schedule::{{ $date->format('Y-n-j') }}"></i>
                                             @endif
                                         </div>
                                     </td>
@@ -78,7 +82,7 @@
         </div>
     </div>
 
-    <div class="mode-change">
+    <div class="mode-change no-print">
         @if(Cookie::get('is_login'))
             <form name="login" method="post" action="{{ url('/auth/lock') }}?p={{ $month->format('Y-m') }}" class="form-login">
                 @csrf

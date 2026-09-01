@@ -13,7 +13,7 @@
             margin: 10mm;
         }
         @media print {
-            .no-print { display: none; }
+            .no-print { display: none !important; }
             .container { width: 100% !important; max-width: 100% !important; margin: 0; padding: 0; }
             .table-calendar { min-width: 100% !important; width: 100% !important; table-layout: fixed; }
             .table-calendar th, .table-calendar td { font-size: 10px; padding: 2px !important; }

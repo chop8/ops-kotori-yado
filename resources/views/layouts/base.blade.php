@@ -18,20 +18,26 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/reception/common.css') }}" rel="stylesheet">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .table-calendar { min-width: 100% !important; width: 100% !important; }
+        }
+    </style>
 {{--    <link href="{{ asset('css/reception/drawer.css') }}" rel="stylesheet">--}}
     @yield('styles')
 </head>
 
-<body>
+<body @if(isset($isPrint) && $isPrint) onload="window.print();" @endif>
 
 <!-- スマホ用メニュー START -->
-<nav class="navbar navbar-sp navbar-expand-md navbar-light d-md-none">
+<nav class="navbar navbar-sp navbar-expand-md navbar-light d-md-none no-print">
     <button class="navbar-toggler" type="button" id="sidr-right">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
 
-<div id="sidr" class="d-none">
+<div id="sidr" class="d-none no-print">
     <header class="py-1 px-3 border-bottom d-flex justify-content-between">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
@@ -53,7 +59,7 @@
 <!-- スマホ用メニュー END -->
 
 <!-- PC用メニュー START -->
-<nav class="navbar navbar-pc navbar-expand-md d-none d-md-block">
+<nav class="navbar navbar-pc navbar-expand-md d-none d-md-block no-print">
     <a class="navbar-brand" href="#"><img src="https://kotori-yado.com/scheduler/images/header_no_btn.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsE1" aria-controls="navbarsE1" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -73,7 +79,7 @@
     @yield('content')
 </main><!-- /.container -->
 
-<footer class="mt-auto py-3 bg-white">
+<footer class="mt-auto py-3 bg-white no-print">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
