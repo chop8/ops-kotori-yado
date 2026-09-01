@@ -18,12 +18,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/reception/common.css') }}" rel="stylesheet">
-    <style>
-        @media print {
-            .no-print { display: none !important; }
-            .table-calendar { min-width: 100% !important; width: 100% !important; }
-        }
-    </style>
 {{--    <link href="{{ asset('css/reception/drawer.css') }}" rel="stylesheet">--}}
     @yield('styles')
 </head>

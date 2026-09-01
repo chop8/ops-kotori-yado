@@ -17,6 +17,13 @@
 .table-calendar tbody td {
     width: 130px;
     overflow-x: scroll;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.table-calendar tbody td::-webkit-scrollbar {
+    display: none;
 }
 
 .table-calendar tbody td > div {
@@ -87,4 +94,21 @@
 .reception-counts .count-number {
     font-weight: bold;
     font-size: 1.1em;
+}
+
+@media print {
+    .no-print { display: none !important; }
+    .table-calendar { min-width: 100% !important; width: 100% !important; }
+    .table-calendar thead th,
+    .table-calendar th,
+    .table-calendar td {
+        border-color: #999 !important;
+    }
+
+    .table-calendar tbody td.bg-sat2 { background-color: #ecf3fb !important; }
+    .table-calendar tbody td.bg-sun2 { background-color: #fef0ec !important; }
+    .table-calendar tbody td.bg-inactive { background-color: #EEEEEE !important; }
+    .table-calendar thead th.bg-sat { background-color: #D3DFED !important; }
+    .table-calendar thead th.bg-sun { background-color: #EFCFC5 !important; }
+    .table-calendar th { background-color: #EEE !important; }
 }
