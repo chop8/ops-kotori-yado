@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/b755a4e291.js" crossorigin="anonymous"></script>
 
     <!-- Custom styles for this template -->
+    <link href="{{ asset('css/reception/drawer.css') }}" rel="stylesheet">
     <link href="{{ asset('css/reception/common.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('css/reception/drawer.css') }}" rel="stylesheet">--}}
     @yield('styles')
@@ -87,6 +88,15 @@
 
 <!-- Bootstrap JS (bundle contains popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- main.js -->
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/jquery.sidr.js') }}"></script>
+<script src="{{ asset('js/drawer.js') }}"></script>
+
 
 @yield('javascript')
 
