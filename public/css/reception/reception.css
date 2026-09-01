@@ -111,3 +111,17 @@
 #editForm label {
     margin-right: 10px;
 }
+
+@media print {
+    .table-schedule {
+        min-width: 100% !important;
+        width: 100% !important;
+        table-layout: fixed;
+    }
+    .table-schedule th,
+    .table-schedule td {
+        word-wrap: break-word;
+        padding: 5px !important;
+    }
+}
+

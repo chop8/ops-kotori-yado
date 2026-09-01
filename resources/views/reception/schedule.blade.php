@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('reception.index', ['m' => $month]) }}">{{ \Illuminate\Support\Carbon::parse($date)->format('Y年n月') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Carbon::parse($date)->format('d日（D）') }}</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Carbon::parse($date)->format('j日（D）') }}</li>
                 <li style="margin-left: auto;" class="no-print"><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.print();"><i class="fa-solid fa-print"></i> 印刷</button></li>
             </ol>
         </nav>
@@ -22,12 +22,12 @@
                 <thead>
                 <tr>
                     <th class="td-time">時間</th>
+                    @if(Cookie::get('is_login'))
+                        <th class="no-print">編集</th>
+                    @endif
                     @foreach ($resources as $name => $resource)
                         <th class="{{ $resource['class'] }}">{{ $name }}</th>
                     @endforeach
-                    @if(Cookie::get('is_login'))
-                        <th>編集</th>
-                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +37,13 @@
                     @endphp
                     <tr>
                         <th>{{ $time }}</th>
+                        @if(Cookie::get('is_login'))
+                            <td class="td-edit text-center no-print">
+                                <button type="button" class="btn btn-sm btn-link p-0" onclick="openEditModal('{{ $time }}')">
+                                    <i class="fa-solid fa-pen-to-square h6"></i>
+                                </button>
+                            </td>
+                        @endif
                         @foreach ($resources as $name => $resource)
                             @php
                                 $field = $resource['field'];
@@ -50,13 +57,6 @@
                                 @endif
                             </td>
                         @endforeach
-                        @if(Cookie::get('is_login'))
-                            <td class="td-edit text-center">
-                                <button type="button" class="btn btn-sm btn-link p-0" onclick="openEditModal('{{ $time }}')">
-                                    <i class="fa-solid fa-pen-to-square h6"></i>
-                                </button>
-                            </td>
-                        @endif
                     </tr>
                 @endforeach
                 </tbody>
