@@ -97,15 +97,15 @@
                         </div>
                         <div class="mb-3">
                             <label>利用</label><br>
-                            <input type="radio" name="type" value="新規"> <label>新規</label>
-                            <input type="radio" name="type" value="既存"> <label>既存</label>
-                            <input type="radio" name="type" value=""> <label>未選択</label>
+                            <input type="radio" name="type" value="新規" id="type-1"> <label for="type-1">新規</label>
+                            <input type="radio" name="type" value="既存" id="type-2"> <label for="type-2">既存</label>
+                            <input type="radio" name="type" value="" id="type-0"> <label for="type-0">未選択</label>
                         </div>
                         <div class="mb-3">
                             <label>区分</label><br>
-                            <input type="radio" name="category" value="持込"> <label>持込</label>
-                            <input type="radio" name="category" value="レンタル"> <label>レンタル</label>
-                            <input type="radio" name="category" value=""> <label>未選択</label>
+                            <input type="radio" name="category" value="持込" id="category-1"> <label for="category-1">持込</label>
+                            <input type="radio" name="category" value="レンタル" id="category-2"> <label for="category-2">レンタル</label>
+                            <input type="radio" name="category" value="" id="category-0"> <label for="category-0">未選択</label>
                         </div>
                         <div class="mb-3">
                             <label>お迎え日時</label>

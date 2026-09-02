@@ -111,7 +111,9 @@
 #editForm label {
     margin-right: 10px;
 }
-
+#editForm input[type="radio"] + label {
+    cursor: pointer;
+}
 @media print {
     .table-schedule {
         min-width: 100% !important;
