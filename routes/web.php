@@ -7,7 +7,7 @@ Route::post('/auth/unlock', [App\Http\Controllers\AuthController::class, 'unlock
 Route::post('/auth/lock', [App\Http\Controllers\AuthController::class, 'lock']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return '';//return view('welcome');
 });
 
 Route::get('/reception/', [ReceptionController::class, 'index'])

@@ -39,10 +39,11 @@
         <button type="button" class="dwrapper-close btn btn-light btn-sm bg-white"><i class="fa fa-times"></i> 閉じる</button>
     </header>
     <ul class="list-group" style="margin: 10px;">
-        <li class="list-group-item"><a href="/"><i class="fa fa-home"></i> HOME <i class="fa fa-angle-right"></i></a></li>
-        <li class="list-group-item"><a href="/calendar/"><i class="fa fa-calendar"></i> カレンダー <i class="fa fa-angle-right"></i></a></li>
-        <li class="list-group-item"><a href="/scheduler/"><i class="fa fa-calendar"></i> スケジュール <i class="fa fa-angle-right"></i></a></li>
-        <li class="list-group-item"><a href="/scheduler_stay/"><i class="fa fa-bed"></i> 予約リスト <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://kotori-yado.com/"><i class="fa fa-home"></i> HOME <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://kotori-yado.com/calendar/"><i class="fa fa-calendar"></i> カレンダー <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://kotori-yado.com/scheduler/"><i class="fa fa-calendar"></i> スケジュール <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://kotori-yado.com/scheduler_stay/"><i class="fa fa-bed"></i> 予約リスト <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://ops.kotori-yado.com/reception/"><i class="fa fa-feather"></i> 予定表 <i class="fa fa-angle-right"></i></a></li>
     </ul>
     <footer class="py-1 px-3 border-top d-flex justify-content-between">
         <div>&nbsp;</div>
@@ -61,10 +62,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarsE1">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link text-dark" href="/">Home</a></li>
-            <li class="nav-item active"><a class="nav-link text-dark" href="/calendar/">カレンダー</a></li>
-            <li class="nav-item active"><a class="nav-link text-dark" href="/scheduler/">スケジュール</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="/scheduler_stay/">予約リスト</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/">Home</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="https://kotori-yado.com/calendar/">カレンダー</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler/">スケジュール</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler_stay/">予約リスト</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="https://ops.kotori-yado.com/reception/">予定表</a></li>
         </ul>
     </div>
 </nav>
@@ -89,8 +91,6 @@
 <!-- Bootstrap JS (bundle contains popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <!-- main.js -->
 <script src="{{ asset('js/main.js') }}"></script>
