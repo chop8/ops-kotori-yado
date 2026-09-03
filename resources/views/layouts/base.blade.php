@@ -63,10 +63,10 @@
     <div class="collapse navbar-collapse" id="navbarsE1">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/">Home</a></li>
-            <li class="nav-item active"><a class="nav-link text-dark" href="https://kotori-yado.com/calendar/">カレンダー</a></li>
-            <li class="nav-item active"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler/">スケジュール</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/calendar/">カレンダー</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler/">スケジュール</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler_stay/">予約リスト</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="https://ops.kotori-yado.com/reception/">予定表</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="https://ops.kotori-yado.com/reception/">予定表</a></li>
         </ul>
     </div>
 </nav>
