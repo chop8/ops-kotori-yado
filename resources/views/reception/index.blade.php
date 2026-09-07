@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', '予約表')
+@section('title', '予約用カレンダー')
 @section('styles')
     <link href="{{ asset('css/reception/reception.css') }}" rel="stylesheet">
     <link href="{{ asset('css/reception/calendar.css') }}" rel="stylesheet">
@@ -9,7 +9,7 @@
     <div class="container mt-4">
         <nav aria-label="breadcrumb" class="no-print">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約用カレンダー</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $month->format('Y年n月') }}</li>
                 <li style="margin-left: auto;"><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.print();"><i class="fa-solid fa-print"></i> 印刷</button></li>
             </ol>

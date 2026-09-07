@@ -9,7 +9,7 @@
     <div class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約表</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('reception.index') }}">予約用カレンダー</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('reception.index', ['m' => $month]) }}">{{ \Illuminate\Support\Carbon::parse($date)->format('Y年n月') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Carbon::parse($date)->format('j日（D）') }}</li>
                 <li style="margin-left: auto;" class="no-print"><button type="button" class="btn btn-sm btn-outline-primary" onclick="window.print();"><i class="fa-solid fa-print"></i> 印刷</button></li>

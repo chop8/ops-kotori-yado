@@ -12,7 +12,7 @@ class ReceptionPageTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('reception.index');
-        $response->assertSee('予約表');
+        $response->assertSee('予約用カレンダー');
         $response->assertSee('先月');
         $response->assertSee('翌月');
         $response->assertDontSee('今月</button>', false);

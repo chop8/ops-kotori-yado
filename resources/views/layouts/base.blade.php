@@ -43,7 +43,7 @@
         <li class="list-group-item"><a href="https://kotori-yado.com/calendar/"><i class="fa fa-calendar"></i> カレンダー <i class="fa fa-angle-right"></i></a></li>
         <li class="list-group-item"><a href="https://kotori-yado.com/scheduler/"><i class="fa fa-calendar"></i> スケジュール <i class="fa fa-angle-right"></i></a></li>
         <li class="list-group-item"><a href="https://kotori-yado.com/scheduler_stay/"><i class="fa fa-bed"></i> 予約リスト <i class="fa fa-angle-right"></i></a></li>
-        <li class="list-group-item"><a href="https://ops.kotori-yado.com/reception/"><i class="fa fa-feather"></i> 予定表 <i class="fa fa-angle-right"></i></a></li>
+        <li class="list-group-item"><a href="https://ops.kotori-yado.com/reception/"><i class="fa fa-feather"></i> 予約用カレンダー <i class="fa fa-angle-right"></i></a></li>
     </ul>
     <footer class="py-1 px-3 border-top d-flex justify-content-between">
         <div>&nbsp;</div>
@@ -66,7 +66,7 @@
             <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/calendar/">カレンダー</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler/">スケジュール</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="https://kotori-yado.com/scheduler_stay/">予約リスト</a></li>
-            <li class="nav-item active"><a class="nav-link text-dark" href="https://ops.kotori-yado.com/reception/">予定表</a></li>
+            <li class="nav-item active"><a class="nav-link text-dark" href="https://ops.kotori-yado.com/reception/">予約用カレンダー</a></li>
         </ul>
     </div>
 </nav>
