@@ -63,6 +63,7 @@
                                                 <dl class="mb-0">
                                                     @if($day['inCount'] > 0)<div class="d-flex"><dt class="me-1">IN</dt><dd class="mb-0">：<span class="count-number">{{ $day['inCount'] }}</span>件</dd></div>@endif
                                                     @if($day['outCount'] > 0)<div class="d-flex"><dt class="me-1">OUT</dt><dd class="mb-0">：<span class="count-number">{{ $day['outCount'] }}</span>件</dd></div>@endif
+                                                    @if($day['otherCount'] > 0)<div class="d-flex"><dt class="me-1">その他</dt><dd class="mb-0">：<span class="count-number">{{ $day['otherCount'] }}</span>件</dd></div>@endif
                                                     @if($day['unknownCount'] > 0)<div class="d-flex"><dt class="me-1">不明</dt><dd class="mb-0">：<span class="count-number">{{ $day['unknownCount'] }}</span>件</dd></div>@endif
                                                 </dl>
                                             </div>

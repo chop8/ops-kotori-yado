@@ -52,6 +52,8 @@
                             <td class="{{ $class }}">
                                 @if ($field === 'memo')
                                     {!! nl2br(e($data ? $data->$field : '')) !!}
+                                @elseif ($field === 'in_out')
+                                    {{ $data && $data->$field === 'OTHER' ? 'その他' : ($data ? $data->$field : '') }}
                                 @else
                                     {{ $data ? $data->$field : '' }}
                                 @endif
@@ -85,6 +87,7 @@
                             <label>IN/OUT</label><br>
                             <input type="radio" name="in_out" value="IN" id="in"> <label for="in">IN</label>
                             <input type="radio" name="in_out" value="OUT" id="out"> <label for="out">OUT</label>
+                            <input type="radio" name="in_out" value="OTHER" id="other"> <label for="other">その他</label>
                             <input type="radio" name="in_out" value="" id="none"> <label for="none">未選択</label>
                         </div>
                         <div class="mb-3">

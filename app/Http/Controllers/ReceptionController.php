@@ -42,8 +42,9 @@ class ReceptionController extends Controller
             $receptionsForDay = \App\Models\Reception::where('date', $dateString)->get();
             $inCount = $receptionsForDay->where('in_out', 'IN')->count();
             $outCount = $receptionsForDay->where('in_out', 'OUT')->count();
+            $otherCount = $receptionsForDay->where('in_out', 'OTHER')->count();
             $unknownCount = $receptionsForDay->filter(function ($item) {
-                return empty($item->in_out);
+                return !in_array($item->in_out, ['IN', 'OUT', 'OTHER']);
             })->count();
 
             $week[] = [
@@ -51,6 +52,7 @@ class ReceptionController extends Controller
                 'isCurrentMonth' => $date->month === $month->month,
                 'inCount' => $inCount,
                 'outCount' => $outCount,
+                'otherCount' => $otherCount,
                 'unknownCount' => $unknownCount,
             ];
 
