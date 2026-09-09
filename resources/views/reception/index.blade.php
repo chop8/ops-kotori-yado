@@ -2,7 +2,7 @@
 @section('title', '予約用カレンダー')
 @section('styles')
     <link href="{{ asset('css/reception/reception.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reception/calendar.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/reception/calendar.css#260909') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -59,7 +59,7 @@
                                     <td {!! $tdAttributes !!}>
                                         <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
                                             <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
-                                            <div class="reception-counts small">
+                                            <div class="reception-counts">
                                                 <dl class="mb-0">
                                                     @if($day['inCount'] > 0)<div class="d-flex"><dt class="me-1">IN</dt><dd class="mb-0">：<span class="count-number">{{ $day['inCount'] }}</span>件</dd></div>@endif
                                                     @if($day['outCount'] > 0)<div class="d-flex"><dt class="me-1">OUT</dt><dd class="mb-0">：<span class="count-number">{{ $day['outCount'] }}</span>件</dd></div>@endif
