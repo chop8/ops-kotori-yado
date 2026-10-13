@@ -16,6 +16,19 @@
             </ol>
         </nav>
 
+        <div class="my-3">
+            @if(Cookie::get('is_login'))
+                <div class="d-flex align-items-center no-print mb-2">
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="openNoteModal()">
+                        <i class="fa-solid fa-pen-to-square"></i> 注意書き編集
+                    </button>
+                </div>
+            @endif
+            @if($dailyNote && $dailyNote->note)
+                <div class="daily-note">{!! nl2br(e($dailyNote->note)) !!}</div>
+            @endif
+        </div>
+
         <h4>{{ $date }} の予定</h4>
         <div class="responsive-area">
             <table class="table table-bordered table-schedule">
@@ -128,7 +141,76 @@
         </div>
     </div>
 
+    <!-- Note Edit Modal -->
+    <div class="modal fade no-print" id="noteEditModal" tabindex="-1" aria-labelledby="noteEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="noteEditForm">
+                    @csrf
+                    <input type="hidden" name="date" value="{{ $date }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="noteEditModalLabel">{{ $date }} 注意書き編集</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="display:none;"></button>
+                        <button type="button" class="btn btn-link text-dark p-0" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>注意書き</label>
+                            <textarea name="note" class="form-control" rows="4">{{ $dailyNote ? $dailyNote->note : '' }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function openNoteModal() {
+            const modalEl = document.getElementById('noteEditModal');
+            const modal = new bootstrap.Modal(modalEl);
+
+            fetch(`{{ route('reception.getNote') }}?date={{ $date }}`)
+                .then(response => response.json())
+                .then(data => {
+                    const form = document.getElementById('noteEditForm');
+                    form.querySelector('textarea[name="note"]').value = (data && data.note) ? data.note : '';
+                    modal.show();
+                })
+                .catch(error => {
+                    modal.show();
+                });
+        }
+
+        document.getElementById('noteEditForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('{{ route('reception.saveNote') }}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('保存に失敗しました');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('通信エラーが発生しました');
+            });
+        });
         function openEditModal(time) {
             document.getElementById('modalDateDisplay').innerText = '{{ $date }}';
             document.getElementById('modalTimeDisplay').innerText = time;

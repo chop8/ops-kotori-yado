@@ -19,6 +19,12 @@ Route::post('/reception/save', [ReceptionController::class, 'save'])
 Route::get('/reception/get-data', [ReceptionController::class, 'getData'])
     ->name('reception.getData');
 
+Route::post('/reception/save-note', [ReceptionController::class, 'saveNote'])
+    ->name('reception.saveNote');
+
+Route::get('/reception/get-note', [ReceptionController::class, 'getNote'])
+    ->name('reception.getNote');
+
 Route::get('/reception/{date}', [ReceptionController::class, 'schedule'])
     ->name('reception.show')
     ->where('date', '\d{4}-\d{1,2}-\d{1,2}');

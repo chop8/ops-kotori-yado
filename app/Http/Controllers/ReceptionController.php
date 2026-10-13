@@ -110,12 +110,15 @@ class ReceptionController extends Controller
             ->get()
             ->keyBy('time_slot');
 
+        $dailyNote = \App\Models\DailyNote::where('date', $date)->first();
+
         return view('reception.schedule', [
             'date' => $date,
             'month' => $month,
             'timeSlots' => $timeSlots,
             'resources' => $resources,
             'receptions' => $receptions,
+            'dailyNote' => $dailyNote,
         ]);
     }
 
@@ -162,5 +165,36 @@ class ReceptionController extends Controller
             ->first();
 
         return response()->json($reception);
+    }
+
+    public function saveNote(Request $request)
+    {
+        $data = $request->validate([
+            'date' => 'required|string',
+            'note' => 'nullable|string',
+        ]);
+
+        $dailyNote = \App\Models\DailyNote::where('date', $data['date'])->first();
+
+        if (empty($data['note'])) {
+            if ($dailyNote) {
+                $dailyNote->delete();
+            }
+        } else {
+            if ($dailyNote) {
+                $dailyNote->update(['note' => $data['note']]);
+            } else {
+                \App\Models\DailyNote::create($data);
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function getNote(Request $request)
+    {
+        $dailyNote = \App\Models\DailyNote::where('date', $request->query('date'))->first();
+
+        return response()->json($dailyNote);
     }
 }
