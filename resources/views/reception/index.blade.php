@@ -57,7 +57,10 @@
                                         $tdAttributes .= " onclick=\"window.location.href='" . route('reception.show', ['date' => $date->format('Y-m-d')]) . "';\" style=\"cursor: pointer;\"";
                                     @endphp
                                     <td {!! $tdAttributes !!}>
-                                        <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}">
+                                        <div class="{{ $day['isCurrentMonth'] ? '' : 'bg-inactive' }}" style="position: relative;">
+                                            @if(!empty($day['hasNote']))
+                                                <i class="fa-solid fa-triangle-exclamation text-danger" style="position: absolute; top: 2px; right: 4px;" title="注意書きあり"></i>
+                                            @endif
                                             <div class="day {{ $day['isCurrentMonth'] ? '' : 'day-inactive' }}">{{ $date->day }}</div>
                                             <div class="reception-counts">
                                                 <dl class="mb-0">

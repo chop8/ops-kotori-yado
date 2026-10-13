@@ -32,20 +32,30 @@ class ReceptionController extends Controller
         $calendarEnd = $month->copy()
             ->endOfMonth()
             ->endOfWeek(Carbon::SATURDAY);
+
+        $dateStrings = [];
+        for ($date = $calendarStart->copy(); $date <= $calendarEnd; $date->addDay()) {
+            $dateStrings[] = $date->format('Y-m-d');
+        }
+
+        $receptions = \App\Models\Reception::whereIn('date', $dateStrings)->get()->groupBy('date');
+        $dailyNotes = \App\Models\DailyNote::whereIn('date', $dateStrings)->whereNotNull('note')->where('note', '!=', '')->pluck('note', 'date');
+
         $calendarWeeks = [];
         $week = [];
 
         for ($date = $calendarStart->copy(); $date <= $calendarEnd; $date->addDay()) {
             $dateString = $date->format('Y-m-d');
 
-            // 各日のIN/OUT件数を取得
-            $receptionsForDay = \App\Models\Reception::where('date', $dateString)->get();
+            $receptionsForDay = $receptions->get($dateString, collect());
             $inCount = $receptionsForDay->where('in_out', 'IN')->count();
             $outCount = $receptionsForDay->where('in_out', 'OUT')->count();
             $otherCount = $receptionsForDay->where('in_out', 'OTHER')->count();
             $unknownCount = $receptionsForDay->filter(function ($item) {
                 return !in_array($item->in_out, ['IN', 'OUT', 'OTHER']);
             })->count();
+
+            $hasNote = isset($dailyNotes[$dateString]) && !empty($dailyNotes[$dateString]);
 
             $week[] = [
                 'date' => $date->copy(),
@@ -54,6 +64,7 @@ class ReceptionController extends Controller
                 'outCount' => $outCount,
                 'otherCount' => $otherCount,
                 'unknownCount' => $unknownCount,
+                'hasNote' => $hasNote,
             ];
 
             if (count($week) === 7) {
